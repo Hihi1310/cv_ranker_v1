@@ -1,0 +1,11 @@
+.jd-container {
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  /* background-color: #f8f8ff; */
+  /* margin-top: 20px; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
