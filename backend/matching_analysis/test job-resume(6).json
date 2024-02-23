@@ -1,0 +1,27 @@
+{
+  "Degree": {
+    "score": 0,
+    "comments": "Candidate does not have a relevant degree."
+  },
+  "Experience": {
+    "score": 60,
+    "comments": "Candidate has experience in IT and technical support roles, but lacks specific experience in data extraction, data transformation, data analysis, and quality assurance."
+  },
+  "TechnicalSkills": {
+    "score": 20,
+    "comments": "Candidate has some technical skills, but lacks proficiency in Python, SQL, Linux, PySpark, and Pandas."
+  },
+  "Responsibilities": {
+    "score": 40,
+    "comments": "Candidate has experience in troubleshooting computer hardware and software issues, but lacks experience in verifying data schema, data extraction and transformation, data analysis and quality assurance, collaborating with other teams, and leading and mentoring team members."
+  },
+  "Certificates": {
+    "score": 0,
+    "comments": "Candidate does not have any relevant certificates."
+  },
+  "SoftSkills": {
+    "score": 60,
+    "comments": "Candidate has good communication skills and problem-solving abilities, but lacks specific soft skills like intelligence, systematic analysis, dedication, self-discipline, work ethic, helping others, proactivity, and communication skills."
+  },
+  "SummaryComment": "The candidate does not meet all the requirements for the position. They lack a relevant degree, specific experience in data extraction, data transformation, data analysis, and quality assurance, proficiency in Python, SQL, Linux, PySpark, and Pandas, experience in verifying data schema, data extraction and transformation, data analysis and quality assurance, collaborating with other teams, and leading and mentoring team members, and relevant certificates. They do have experience in IT and technical support roles, as well as some technical skills and soft skills like good communication skills and problem-solving abilities."
+}
