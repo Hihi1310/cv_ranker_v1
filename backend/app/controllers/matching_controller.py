@@ -2,6 +2,7 @@ from app.schemas.matching_schema import *
 from app.services import matching_service
 from flask.views import MethodView
 from flask_smorest import Blueprint
+from flask import request
 
 blp = Blueprint("Matching", __name__, description="Matching API")
 
@@ -23,9 +24,20 @@ class MatchingFilter(MethodView):
         return result
 
 
-@blp.route("/candidate/<int:candidate_id>/job/<int:job_id>")
+@blp.route("/candidate/<candidate_id>/job/<job_id>")
 class GetMatchingData(MethodView):
     @blp.response(200, MatchingDetailSchema)
     def get(self, candidate_id, job_id):
-        result = matching_service.get_matching_data(candidate_id, job_id)
+        result = matching_service.get_direct_matching_data(candidate_id, job_id)
         return result
+    
+# @blp.route("/single-match")
+# class SingleMatch(MethodView):
+#     @blp.response(200, MatchingDetailSchema)
+#     def get(self):
+#         request_args = request.args.to_dict()
+#         result = matching_service.get_direct_matching_data(request_args['candidate_cv_name']
+#                                                            , request_args['job_describsion_name'])
+#         return result
+
+

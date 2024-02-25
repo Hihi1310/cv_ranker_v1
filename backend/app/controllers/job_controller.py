@@ -51,9 +51,3 @@ class Candidate(MethodView):
     def get(self, job_id):
         result = job_service.get_job_detail(job_id)
         return result
-
-
-@blp.route("/job_controller")
-def call():
-    return 'job controller in online'
-

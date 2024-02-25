@@ -1,0 +1,27 @@
+{
+  "Degree": {
+    "score": 0,
+    "comments": "Candidate does not have a Bachelor's Degree in Computer Science, Information Technology or equivalent."
+  },
+  "Experience": {
+    "score": 0,
+    "comments": "Candidate does not have 4+ years of professional experience in front-end web development or proven experience as Front End Developer in Fintech area."
+  },
+  "TechnicalSkills": {
+    "score": 75,
+    "comments": "Candidate has experience with React and Javascript, which are required technical skills."
+  },
+  "Responsibilities": {
+    "score": 50,
+    "comments": "Candidate has some relevant responsibilities, but may not have experience with all of the required responsibilities."
+  },
+  "Certificates": {
+    "score": 0,
+    "comments": "Candidate does not have any required certificates."
+  },
+  "SoftSkills": {
+    "score": 75,
+    "comments": "Candidate has good communication skills, which is a required soft skill."
+  },
+  "SummaryComment": "The candidate does not meet the degree and experience requirements, but has some relevant technical skills and soft skills."
+}

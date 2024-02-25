@@ -1,0 +1,27 @@
+{
+  "Degree": {
+    "score": 0,
+    "comments": "The candidate's degree in Linguistics does not match the required degree in Computer Science, Information Technology or equivalent."
+  },
+  "Experience": {
+    "score": 75,
+    "comments": "The candidate has professional experience in front-end web development and has worked as a Front End Developer in the past. However, their experience in the Fintech area is not mentioned."
+  },
+  "TechnicalSkills": {
+    "score": 75,
+    "comments": "The candidate has experience with React, Javascript, and REST APIs, which are required technical skills for the position."
+  },
+  "Responsibilities": {
+    "score": 80,
+    "comments": "The candidate has experience in designing and developing high-quality code using React and Javascript. They have also collaborated with project managers and designers to translate requirements into technical specifications. However, their experience in code reviews, optimizing applications, troubleshooting and debugging complex issues, and staying updated on emerging technologies is not mentioned."
+  },
+  "Certificates": {
+    "score": 0,
+    "comments": "The candidate does not have any of the required certificates."
+  },
+  "SoftSkills": {
+    "score": 60,
+    "comments": "The candidate has some relevant soft skills such as adaptability and teamwork & communication. However, their language skills are not specified, and there is no mention of their proficiency in any foreign language."
+  },
+  "SummaryComment": "The candidate partially matches the requirements for the position. They have relevant experience and technical skills, but their degree and certificates do not meet the requirements. They also lack some of the responsibilities and specific soft skills mentioned in the requirements."
+}

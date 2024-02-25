@@ -262,7 +262,7 @@ class DocumentAnalyzer:
         # output_analysis = completion.choices[0].message
         # print("output_analysis", output_analysis)
 
-        llm = ChatOpenAI(model=model_name, temperature=0.5, openai_api_key="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")
+        llm = ChatOpenAI(model=model_name, temperature=0.5)
         completion = llm.predict_messages(
             [
                 SystemMessage(content=system_prompt_candidate),
@@ -311,7 +311,7 @@ class DocumentAnalyzer:
         # output_analysis = completion.choices[0].message
         # print("output_analysis", output_analysis)
 
-        llm = ChatOpenAI(model=model_name, temperature=0.5, openai_api_key="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")
+        llm = ChatOpenAI(model=model_name, temperature=0.5)
         completion = llm.predict_messages(
             [
                 SystemMessage(content=system_prompt_jd),
@@ -363,7 +363,7 @@ class DocumentAnalyzer:
         # output_analysis = completion.choices[0].message
         # print("output_analysis", output_analysis)
 
-        llm = ChatOpenAI(model=model_name, temperature=0.5, openai_api_key="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")
+        llm = ChatOpenAI(model=model_name, temperature=0.5)
         completion = llm.predict_messages(
             [
                 SystemMessage(content=system_prompt_matching),

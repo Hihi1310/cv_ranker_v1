@@ -38,7 +38,7 @@ def get_candiate(candiate_id):
     results = CandidateModel.query.filter_by(id=candiate_id).first()
 
     if not results:
-        abort(400, message="job not found!")
+        abort(400, message="candidate not found!")
 
     path_file = config.CV_ANALYSIS_DIR + json_filename(results.cv_name_analyse)
     data_candidate = json2string(path=path_file)
@@ -118,7 +118,8 @@ def process_upload_file(single_file):
 
         # Save the file to disk
         file_upload.seek(0)
-        file_upload.save(os.path.join(config.CV_UPLOAD_DIR, f"{filename}"))
+        #please fix the upload
+        file_upload.save(os.path.join(config.CV_UPLOAD_DIR, f"{file_upload.filename}"))
 
         # Get type file
         file_type = filename.split(".")[-1]
@@ -130,7 +131,7 @@ def process_upload_file(single_file):
     # Analyse Candidate
     try:
         analyzer = DocumentAnalyzer()
-        output_analysis = analyzer.analyse_candidate(file_name=filename)
+        output_analysis = analyzer.analyse_candidate(file_name=file_upload.filename)
     except:
         logger.error("Can not analyse Candidate!")
         abort(400, message="Can not analyse Candidate!")
@@ -161,6 +162,7 @@ def process_upload_file(single_file):
         db.session.add(file_upload_new)
         db.session.commit()
     except:
+
         logger.error("Upload document to Database failed!")
         abort(400, message="Upload document to Database failed!")
 

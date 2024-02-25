@@ -55,7 +55,6 @@ class DefaultConfig:
     # Database configuration
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SHOW_SQLALCHEMY_LOG_MESSAGES = False
-    SQLALCHEMY_DATABASE_URI = "sqlite:///test.sqlite3"
 
     # App Environments
     APP_ENV_LOCAL = "local"
@@ -77,8 +76,7 @@ class DevelopConfig(DefaultConfig):
     DEBUG = True
 
     # Database configuration
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///test.sqlite3"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 class TestingConfig(DefaultConfig):
@@ -98,8 +96,7 @@ class TestingConfig(DefaultConfig):
     LOG_FILE_API = f"{basedir}/logs/api_tests.log"
 
     # Database configuration
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_TEST_URL")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///test.sqlite3"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_TEST_URL")
 
 
 class LocalConfig(DefaultConfig):
@@ -110,8 +107,7 @@ class LocalConfig(DefaultConfig):
     DEBUG = False
 
     # Database configuration
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///test.sqlite3"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 class ProductionConfig(DefaultConfig):
@@ -122,5 +118,4 @@ class ProductionConfig(DefaultConfig):
     DEBUG = False
 
     # Database configuration
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///test.sqlite3"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")

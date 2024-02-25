@@ -55,6 +55,10 @@ class CandidateSchema(Schema):
     total_page = fields.Int()
     total_file = fields.Int()
 
+    {'result':'fields.List(fields.Nested(PlainCandidateSchema()))',
+     'total_page': 'fields.Int()',
+     'total_file': 'fields.Int()'}
+
 
 class CandidateFilterSchema(Schema):
     page_size = fields.Int(allow_none=True, required=True)

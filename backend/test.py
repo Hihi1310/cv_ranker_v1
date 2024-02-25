@@ -1,6 +1,5 @@
 from analysis_service.main import *
 from analysis_service.main import DocumentAnalyzer
-import json
 
 analyzer = DocumentAnalyzer()
 
@@ -35,23 +34,22 @@ data engineer
 """
 
 print("test ...")
-# print(analyzer.analyse_candidate(file_name="resume(6).pdf"))
+print(analyzer.analyse_candidate(file_name="resume(6).pdf"))
 # print(analyzer.analyse_candidate(file_name="test.pdf"))
 # analyzer.analyse_candidate(file_name="CV-NguyenVanPhuoc-FresherAIEngineer.pdf")
 
 print("job ...")
-# print(analyzer.analyse_job(job_name, job_description))
-# with open('test cv ranking.json', 'r') as file:
-#     print(json.load(file))
+# analyzer.analyse_job(job_name, job_description)
+
 
 print("match...")
 # cv_file_name = "resume(6).json"
-cv_file_name = "resume(6).json"
+cv_file_name = "20231018130446-CV-NguyenVanPhuoc-FresherAIEngineer.json"
 # cv_file_name = "resume(10).json"
 # job_file_name = "AI Engineer.json"
 job_file_name = "test job.json"
 
-print(analyzer.analyse_matching(cv_file_name, job_file_name))
+# analyzer.analyse_matching(cv_file_name, job_file_name)
 # print(system_prompt_candidate)
 
 # for i in range(15, 40):

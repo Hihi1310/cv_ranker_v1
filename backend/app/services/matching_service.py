@@ -10,6 +10,7 @@ from app.db import db
 from app.models.candidate_model import CandidateModel
 from app.models.job_model import JobModel
 from app.models.matching_model import MatchingModel
+from app.schemas.matching_schema import MatchingDetailSchema
 from flask_smorest import abort
 from pytz import timezone
 from sqlalchemy import asc, desc
@@ -30,20 +31,8 @@ def json2string(path):
         data = json.load(f)
     return data
 
-
-def process_matching(matching_data):
-    job_name = matching_data["job_name"]
-
-    job = JobModel.query.filter_by(job_name=job_name).first()
-
-    if not job:
-        abort(400, message="job not found!")
-
+def save_matching(candidates, job):
     analyzer = DocumentAnalyzer()
-
-    # Get all candidate
-    candidates = CandidateModel.query.order_by(asc(CandidateModel.id)).all()
-
     # Loop matching to caculate score for each candidate
     for candidate in candidates:
         # Check exist analyse
@@ -54,7 +43,7 @@ def process_matching(matching_data):
             continue
 
         cv_file_name = analyzer.json_filename(candidate.cv_name_analyse)
-        job_file_name = job_name + ".json"
+        job_file_name = job.job_name + ".json"
 
         result = analyzer.analyse_matching(cv_file_name, job_file_name)
 
@@ -71,6 +60,22 @@ def process_matching(matching_data):
         except:
             db.session.rollback()
             abort(400, message="Can not add Matching!")
+
+
+def process_matching(matching_data):
+    job_name = matching_data["job_name"]
+
+    job = JobModel.query.filter_by(job_name=job_name).first()
+
+    if not job:
+        abort(400, message="job not found!")
+
+    # Get all candidate
+    candidates = CandidateModel.query.order_by(asc(CandidateModel.id)).all()
+
+    #save to database
+    save_matching(candidates, job)
+        
 
     return {"message": "Analyse matching successfully!"}
 
@@ -181,6 +186,50 @@ def get_matching_data(candidate_id, job_id):
     base_cv_name, _ = os.path.splitext(candidate.cv_name_analyse)
     path_file = config.MATCHING_ANALYSIS_DIR + f"{job.job_name}-{base_cv_name}.json"
     data_matching = json2string(path=path_file)
+
+    matching.job_name = job.job_name
+
+    matching.education_comment = data_matching["Degree"]["comments"]
+    matching.education_score = data_matching["Degree"]["score"]
+
+    matching.experiment_comment = data_matching["Experience"]["comments"]
+    matching.experiment_score = data_matching["Experience"]["score"]
+
+    matching.responsibilities_comment = data_matching["Responsibilities"]["comments"]
+    matching.responsibilities_score = data_matching["Responsibilities"]["score"]
+
+    matching.certification_comment = data_matching["Certificates"]["comments"]
+    matching.certification_score = data_matching["Certificates"]["score"]
+
+    matching.soft_skills_comment = data_matching["SoftSkills"]["comments"]
+    matching.soft_skills_score = data_matching["SoftSkills"]["score"]
+
+    matching.technical_skills_comment = data_matching["TechnicalSkills"]["comments"]
+    matching.technical_skills_score = data_matching["TechnicalSkills"]["score"]
+
+    return matching
+
+
+def get_direct_matching_data(candidate_cv_name, job_describsion_name):
+   
+    candidate = json2string(os.path.join(config.CV_ANALYSIS_DIR,candidate_cv_name+".json"))
+
+    job = JobModel.query.filter_by(job_name=job_describsion_name).first()
+
+    analyzer = DocumentAnalyzer()
+    analyzer.analyse_matching(candidate_cv_name+".json", job_describsion_name+".json")
+    path_file = config.MATCHING_ANALYSIS_DIR + f"{job.job_name}-{candidate_cv_name}.json"
+    data_matching = json2string(path=path_file)
+
+    matching = MatchingDetailSchema()
+    
+    matching.candidate_name = candidate["PersonalInformation"]["name"]
+    matching.candidate_phone = candidate["PersonalInformation"]["phone"]
+    matching.cv_name = candidate_cv_name
+    matching.recommended_jobs = candidate["JobRecommend"]
+
+    # Read file analysis matching
+    
 
     matching.job_name = job.job_name
 
