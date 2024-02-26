@@ -6,17 +6,16 @@ import axios from "axios";
 
 function Match() {
   const { isMatched } = useSelector((state) => state.matchReducer);
-  const { jobName, jobDescription } = useSelector((state) => state.jdReducer);
+  const { jobName } = useSelector((state) => state.jdReducer);
   const dispatch = useDispatch();
 
   const postData = async () => {
     try {
       // request jobname {'job_name' : name} || request jobdescription {"job_name": name, " job_description": text}
       const response = await axios.post(
-        "/process-matching",
+        "/backend/process-matching",
         JSON.stringify({
           job_name: jobName,
-          jobDescription: jobDescription,
         })
       );
       // const jd_response = await axios.post("/job", job_description); // cái này là submit riêng
@@ -31,7 +30,6 @@ function Match() {
     console.log(
       JSON.stringify({
         job_name: jobName,
-        jobDescription: jobDescription,
       })
     );
     console.log(jobName);
