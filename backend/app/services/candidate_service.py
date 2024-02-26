@@ -119,6 +119,7 @@ def process_upload_file(single_file):
         # Save the file to disk
         file_upload.seek(0)
         #please fix the upload
+        logger.info(f'saved file path {os.path.join(config.CV_UPLOAD_DIR, f"{file_upload.filename}")}')
         file_upload.save(os.path.join(config.CV_UPLOAD_DIR, f"{file_upload.filename}"))
 
         # Get type file

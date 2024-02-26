@@ -1,0 +1,8 @@
+{
+  "Degree": ["Bachelor's degree in Computer Science", "Bachelor's degree in Software Engineering"],
+  "Experience": ["3+ years of experience as a back-end developer"],
+  "TechnicalSkills": ["Java", "Python", "SQL", "Linux"],
+  "Responsibilities": ["Design and develop scalable and high-performance web applications", "Collaborate with front-end developers to integrate user-facing elements with server-side logic", "Optimize applications for maximum speed and scalability", "Implement security and data protection measures", "Troubleshoot and debug applications", "Collaborate with cross-functional teams to define, design, and ship new features"],
+  "Certificates": [],
+  "SoftSkills": ["Communication", "Teamwork", "Problem-solving", "Attention to detail"]
+}

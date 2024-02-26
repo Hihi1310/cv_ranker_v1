@@ -1,0 +1,27 @@
+{
+  "Degree": {
+    "score": 0,
+    "comments": "The candidate does not have a Bachelor's degree in Computer Science or Software Engineering."
+  },
+  "Experience": {
+    "score": 0,
+    "comments": "The candidate does not have 3+ years of experience as a back-end developer."
+  },
+  "TechnicalSkills": {
+    "score": 50,
+    "comments": "The candidate has some technical skills that are relevant to the position, such as database management and troubleshooting."
+  },
+  "Responsibilities": {
+    "score": 50,
+    "comments": "The candidate has experience in troubleshooting computer hardware and software issues, as well as configuring networks and providing technical support."
+  },
+  "Certificates": {
+    "score": 0,
+    "comments": "The candidate does not have any required certificates."
+  },
+  "SoftSkills": {
+    "score": 80,
+    "comments": "The candidate has strong communication, problem-solving, and teamwork skills."
+  },
+  "SummaryComment": "The candidate does not meet the degree and experience requirements, but has some relevant technical skills and experience in troubleshooting and providing technical support. They also have strong soft skills."
+}

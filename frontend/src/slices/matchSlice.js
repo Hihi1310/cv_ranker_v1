@@ -4,7 +4,7 @@ const matchSlice = createSlice({
   name: "match",
   initialState: {
     isMatched: false,
-    matchingData: "",
+    matchingData: null,
   },
   reducers: {
     click: (state, action) => {

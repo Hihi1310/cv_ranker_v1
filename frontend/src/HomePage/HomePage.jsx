@@ -39,7 +39,7 @@ function HomePage() {
         <Dialog open={isMatched}>
           <DialogTitle>RESUMÉ/CV SUMMARY</DialogTitle>
           <DialogContent className="cv-summary-dialog-content-custom">
-            <DialogContentText>{matchingData}</DialogContentText>
+            <DialogContentText>{matchingData ? JSON.stringify(matchingData) : ""}</DialogContentText>
           </DialogContent>
           <DialogActions>
             <button className="btn btn-danger" autoFocus onClick={handleClick}>
