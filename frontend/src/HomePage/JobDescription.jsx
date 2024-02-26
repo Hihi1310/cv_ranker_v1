@@ -40,7 +40,6 @@ function JobDescription() {
     console.log(evt.target.value);
   };
 
-
   const handleSubmitJD = () => {
     console.log(
       "jobDescription",

@@ -14,11 +14,13 @@ import {
   DialogActions,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { click } from "../slices/matchSlice";
+import { click, get_matching_data } from "../slices/matchSlice";
 import resumeData from "../data/resume.json";
 
 function HomePage() {
-  const { isMatched } = useSelector((state) => state.matchReducer);
+  const { isMatched, matchingData } = useSelector(
+    (state) => state.matchReducer
+  );
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -37,59 +39,7 @@ function HomePage() {
         <Dialog open={isMatched}>
           <DialogTitle>RESUMÉ/CV SUMMARY</DialogTitle>
           <DialogContent className="cv-summary-dialog-content-custom">
-            <DialogContentText>
-              <h4>Degree: </h4>
-              {resumeData.Degree.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Experience: </h4>
-              {resumeData.Experience.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Technical Skills: </h4>
-              {resumeData.TechnicalSkills.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Responsibilities: </h4>
-              {resumeData.Responsibilities.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Certificates: </h4>
-              {resumeData.Certificates.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Soft Skills: </h4>
-              {resumeData.SoftSkills.map((val) => {
-                return <li>{val}</li>;
-              })}
-              <br />
-              <hr />
-              <br />
-              <h4>Comment: </h4>
-              <li>{resumeData.Comment}</li>
-              <br />
-              <hr />
-              <br />
-              <h4>Job Recommend: </h4>
-              {resumeData.JobRecommend.map((val) => {
-                return <li>{val}</li>;
-              })}
-            </DialogContentText>
+            <DialogContentText>{matchingData}</DialogContentText>
           </DialogContent>
           <DialogActions>
             <button className="btn btn-danger" autoFocus onClick={handleClick}>
