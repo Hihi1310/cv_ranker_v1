@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { click, get_matching_data } from "../slices/matchSlice";
-import resumeData from "../data/resume.json";
+import testingMatchingData from "../data/testing-match-data.json";
 
 function HomePage() {
   const { isMatched, matchingData } = useSelector(
@@ -28,6 +28,7 @@ function HomePage() {
   };
 
   // console.log("resume keys: ", Object.keys(resumeData));
+  const Ob = testingMatchingData;
 
   return (
     <div className="homepage-container">
@@ -37,9 +38,35 @@ function HomePage() {
         <Match />
         <JobDescription />
         <Dialog open={isMatched}>
-          <DialogTitle>RESUMÉ/CV SUMMARY</DialogTitle>
+          <DialogTitle
+            style={{
+              marginBottom: "10px",
+              color: "rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1))",
+            }}
+          >
+            RESUMÉ/CV SUMMARY
+          </DialogTitle>
           <DialogContent className="cv-summary-dialog-content-custom">
-            <DialogContentText>{matchingData ? JSON.stringify(matchingData) : ""}</DialogContentText>
+            <DialogContentText>
+              {/* {matchingData ? JSON.stringify(matchingData) : ""} */}
+              {matchingData ? (
+                Object.keys(matchingData).map((key) => {
+                  if (!["cv_name", "certification_score"].includes(key)) {
+                    return (
+                      <div className="matching-data-box">
+                        <h4 className="matching-data-title">
+                          {key.split("_").join(" ")}
+                        </h4>
+                        <li className="matching-data-value">{Ob[key]}</li>
+                        <br />
+                      </div>
+                    );
+                  }
+                })
+              ) : (
+                <h2>There is nothing to print out !</h2>
+              )}
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <button className="btn btn-danger" autoFocus onClick={handleClick}>
