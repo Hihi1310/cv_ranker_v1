@@ -243,7 +243,7 @@ class DocumentAnalyzer:
     def analyse_candidate(self, file_name):
         start = time.time()
         logger.info("Start analyse candidate")
-
+        logger.info(f"current file name {file_name}")
         content = self.get_cv(file_name=file_name)
         logger.info(f"Time read CV: {time.time() - start}")
 

@@ -1,0 +1,27 @@
+{
+  "Degree": {
+    "score": 0,
+    "comments": "Candidate does not have a Bachelor's degree in Business Administration, Finance, or Economics."
+  },
+  "Experience": {
+    "score": 50,
+    "comments": "Candidate has some experience as a business analyst and in data analysis and reporting."
+  },
+  "TechnicalSkills": {
+    "score": 50,
+    "comments": "Candidate has some technical skills relevant to the position."
+  },
+  "Responsibilities": {
+    "score": 20,
+    "comments": "Candidate has some responsibilities that are relevant to the position."
+  },
+  "Certificates": {
+    "score": 0,
+    "comments": "Candidate does not have the required Certified Business Analysis Professional (CBAP) certificate."
+  },
+  "SoftSkills": {
+    "score": 75,
+    "comments": "Candidate has good communication skills and the ability to work in a team."
+  },
+  "SummaryComment": "The candidate does not meet the degree requirement, but has some relevant experience, technical skills, and soft skills."
+}

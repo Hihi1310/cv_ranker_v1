@@ -12,11 +12,11 @@ function JobDescription() {
     try {
       // request jobname {'job_name' : name} || request jobdescription {"job_name": name, " job_description": text}
       const response = await axios.post(
-        "/backend/process-matching",
-        JSON.stringify({
+        "/backend/job",
+        {
           job_name: jobName,
-          jobDescription: jobDescription,
-        }),
+          job_description: jobDescription,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -30,17 +30,23 @@ function JobDescription() {
     }
   };
 
-  const handleChange = (evt) => {
+  const handleJobDescriptionChange = (evt) => {
     dispatch(get_job_description(evt.target.value));
+    console.log(evt.target.value);
+  };
+
+  const handleJobNameChange = (evt) => {
     dispatch(get_job_name(evt.target.value));
     console.log(evt.target.value);
   };
+
+
   const handleSubmitJD = () => {
     console.log(
       "jobDescription",
       JSON.stringify({
         job_name: jobName,
-        jobDescription: jobDescription,
+        job_description: jobDescription,
       })
     );
     postDescriptionData();
@@ -52,7 +58,7 @@ function JobDescription() {
         type="text"
         className="form-control"
         placeholder="Enter your job's name..."
-        onChange={handleChange}
+        onChange={handleJobNameChange}
       />
       <textarea
         className="form-control"
@@ -60,7 +66,7 @@ function JobDescription() {
         id=""
         cols="30"
         rows="10"
-        onChange={handleChange}
+        onChange={handleJobDescriptionChange}
         placeholder="Enter/Paste your Job Description..."
       ></textarea>
       <button className="jd-button-1" onClick={handleSubmitJD}>

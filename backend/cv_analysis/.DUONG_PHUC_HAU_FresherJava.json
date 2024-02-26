@@ -1,0 +1,15 @@
+{
+  "PersonalInformation": {
+    "name": "DUONG PHUC HAU",
+    "phone": "0877757745",
+    "email": "phuchau162@gmail.com"
+  },
+  "Degree": ["Major: Software Development - FPT POLYTECHNIC - GPA: 8.3/10 - AUG 2019- DECEMBER 2022"],
+  "Experience": ["Project Clinic management", "Project Movie site", "Project Sales website", "Internship at SmartPay", "Project in freelance", "Repair service", "Class management software", "Personal Project", "Account management"],
+  "TechnicalSkills": ["JAVA", "OOP", "Spring Boot Framework", "NodeJS", "HTML", "CSS", "JavaScript", "ReactJS", "Bootstrap", "AngularJS", "SQL Server", "My SQL", "MongoDB", "Redis", "Intellij", "Eclipse", "Visual Studio Code", "Git"],
+  "Responsibilities": ["Login(User, Google)", "Decentralize(Security)", "Forgot password(Send Email)", "Cart(Angular API)", "Admin: Chart statistics(money(month, year), Number of orders(day, month), Account management", "User: Add orders, pay, See the product"],
+  "Certificates": [],
+  "SoftSkills": ["Ability to work in a team", "Good communication skills"],
+  "Comment": "The candidate has a strong background in Java and programming. They have experience in back-end development using Java, Spring Boot, and NodeJS. They also have knowledge in front-end technologies like HTML, CSS, JavaScript, ReactJS, and AngularJS. They have experience with databases such as SQL Server, MySQL, MongoDB, and Redis. The candidate has experience working on various projects and an internship at SmartPay where they gained experience with microservices, Java Servlet/Jetty, Rabbit MQ, Kafka, Redis, MongoDB, and MySQL. They have good technical skills and are proficient in using tools like Intellij, Eclipse, Visual Studio Code, and Git. The candidate also possesses soft skills such as the ability to work in a team and good communication skills.",
+  "JobRecommend": ["Back-End Developer", "Full-Stack Developer", "Java Developer"]
+}

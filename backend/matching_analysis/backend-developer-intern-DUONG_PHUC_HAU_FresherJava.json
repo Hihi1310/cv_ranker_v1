@@ -1,27 +1,27 @@
 {
   "Degree": {
     "score": 0,
-    "comments": "Candidate does not have a Bachelor's Degree."
+    "comments": "Candidate does not have a Bachelor's Degree"
   },
   "Experience": {
-    "score": 50,
-    "comments": "Candidate has some experience, but it is not specified if it is within the required range of 1-3 years."
+    "score": 60,
+    "comments": "Candidate has relevant experience of 1-3 years"
   },
   "TechnicalSkills": {
     "score": 75,
-    "comments": "Candidate has some of the required technical skills, including Node.js, JavaScript, and Git."
+    "comments": "Candidate has relevant technical skills in Node.js, PHP, JavaScript, and Git"
   },
   "Responsibilities": {
-    "score": 50,
-    "comments": "Candidate has experience with web application development, but the specific responsibilities mentioned do not match the required responsibilities."
+    "score": 40,
+    "comments": "Candidate has some relevant responsibilities but not all"
   },
   "Certificates": {
     "score": 0,
-    "comments": "Candidate does not have any required certificates."
+    "comments": "Candidate does not have any required certificates"
   },
   "SoftSkills": {
-    "score": 100,
-    "comments": "Candidate has the required soft skills of teamwork and English language."
+    "score": 50,
+    "comments": "Candidate has some relevant soft skills"
   },
-  "SummaryComment": "The candidate does not have a Bachelor's Degree and does not have the required experience, responsibilities, or certificates. However, they have some of the required technical skills and the required soft skills."
+  "SummaryComment": "The candidate partially matches the requirements"
 }

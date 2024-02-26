@@ -7,16 +7,15 @@ import axios from "axios";
 function Match() {
   const { isMatched } = useSelector((state) => state.matchReducer);
   const { jobName } = useSelector((state) => state.jdReducer);
+  const { resumeFile } = useSelector((state) => state.resumeReducer)
   const dispatch = useDispatch();
 
   const postData = async () => {
     try {
+      const cv_name = resumeFile.name.split('.pdf')[0]
       // request jobname {'job_name' : name} || request jobdescription {"job_name": name, " job_description": text}
-      const response = await axios.post(
-        "/backend/process-matching",
-        JSON.stringify({
-          job_name: jobName,
-        })
+      const response = await axios.get(
+        `/backend/candidate/${cv_name}/job/${jobName}`,
       );
       // const jd_response = await axios.post("/job", job_description); // cái này là submit riêng
       console.log(response.status);
