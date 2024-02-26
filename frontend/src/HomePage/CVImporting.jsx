@@ -14,7 +14,21 @@ function CVImporting() {
   const { resumeFile, importStatus, uploadStatus } = useSelector(
     (state) => state.resumeReducer
   );
+
   const dispatch = useDispatch();
+
+    const postFileData = async () => {
+      try {
+        const response = await axios.post("/backend/upload-cv", {file_upload: resumeFile}, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          }
+        });
+        console.log(response.status);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   const handleChange = (evt) => {
     if (evt.target.files) {
@@ -34,17 +48,9 @@ function CVImporting() {
   };
 
   const handleUpload = (evt) => {
+    postFileData();
     console.log("resumeFile: ", resumeFile);
 
-    // lưu file vào biến
-    // const postData = async () => {
-    //   try {
-    //     const response = await axios.post("/upload-cv", file);
-    //     console.log(response.status);
-    //   } catch (error) {
-    //     console.log(response.error);
-    //   }
-    // };
   };
   const fileInputRef = useRef(null);
 
