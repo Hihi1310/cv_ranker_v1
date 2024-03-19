@@ -31,3 +31,29 @@
   width: 1000px;
   gap: 20%;
 } */
+
+/* .matching-data-title {
+  display: block;
+} */
+
+.matching-data-title {
+  text-transform: capitalize;
+  color: black;
+  font-weight: 900;
+  font-size: 1rem;
+  /* text-decoration: underline; */
+}
+.matching-data-value {
+  color: black;
+  font-weight: 500;
+  font-size: 1rem;
+  list-style: none;
+  margin-left: 20px;
+  padding-left: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f8f8ff;
+}
+
+.matching-data-box {
+}
