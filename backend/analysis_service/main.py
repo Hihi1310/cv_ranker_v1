@@ -131,6 +131,7 @@ class DocumentAnalyzer:
         if os.path.basename(file_path).endswith(".pdf") or os.path.basename(
             file_path
         ).endswith(".PDF"):
+            logger.info(file_path)
             loader = PyPDFLoader(file_path)
         elif os.path.basename(file_path).endswith(".docx") or os.path.basename(
             file_path
@@ -149,7 +150,7 @@ class DocumentAnalyzer:
     def get_cv(self, file_name):
         """load 1 CV to string"""
         file_path = self.cv_upload_dir + file_name
-
+        
         data = self.load_pdf_docx(file_path=file_path)
         _context = ""
         for x in data:

@@ -1,6 +1,5 @@
 from app.db import db
 
-
 class CandidateModel(db.Model):
     __tablename__ = "candidate"
 
@@ -20,3 +19,10 @@ class CandidateModel(db.Model):
     jobs = db.relationship(
         "JobModel", back_populates="candidates", secondary="matching"
     )
+
+    users = db.relationship(
+        "UserModel", back_populates="candidates", secondary="candidate_user"
+    )
+
+    def __repr__(self):
+        return f'<cadidate_name:"{self.candidate_name}"\ncandidate_phone:"{self.candidate_phone}"\ncandidate_email:"{self.candidate_email}"\ncandidate_summary:"{self.candidate_summary}"\nrecommended_jobs:"{self.recommended_jobs}"\n>cv_date:"{self.cv_date}"'

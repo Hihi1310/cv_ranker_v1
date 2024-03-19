@@ -16,10 +16,12 @@ from flask import request
 from flask_smorest import abort
 from pytz import timezone
 from sqlalchemy import asc
+from werkzeug.utils import secure_filename
+
 
 # Create logger for this module
 logger = logging.getLogger(__name__)
-
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx'}
 
 def json_filename(file_name):
     """abc.pdf >>> abc.json"""
@@ -27,12 +29,15 @@ def json_filename(file_name):
     json_filename = base_name + ".json"
     return json_filename
 
+def get_file_size(file_name):
+    size = os.path.getsize(os.path.join(config.CV_UPLOAD_DIR, file_name))
+    logger.info(f'the upload file size if {size}')
+    return size
 
 def json2string(path):
     with open(path) as f:
         data = json.load(f)
     return data
-
 
 def get_candiate(candiate_id):
     results = CandidateModel.query.filter_by(id=candiate_id).first()
@@ -95,14 +100,16 @@ def process_upload_file(single_file):
 
         # Get PDF file
         file_upload = result["file_upload"]
+       
+        # file_upload = single_file
 
         # Add datetime
         time_upload = datetime.now(timezone("Asia/Ho_Chi_Minh")).strftime(
             "%Y%m%d%H%M%S-"
         )
 
-        filename = time_upload + file_upload.filename
-        logger.info(f"Filename: {filename}")
+        filename = time_upload + secure_filename(file_upload.filename)
+        # logger.info(f"Filename: {filename}")
         filesize = len(file_upload.read())
 
         # Get hash
@@ -115,57 +122,60 @@ def process_upload_file(single_file):
             # File already exists in the database
             logger.error("File is duplicate!")
             return {"message": "File is duplicate!"}, 409
-
-        # Save the file to disk
+        
         file_upload.seek(0)
-        #please fix the upload
-        logger.info(f'saved file path {os.path.join(config.CV_UPLOAD_DIR, f"{file_upload.filename}")}')
-        file_upload.save(os.path.join(config.CV_UPLOAD_DIR, f"{file_upload.filename}"))
-
+        file_upload.save(os.path.join(config.CV_UPLOAD_DIR, f"{filename}"), buffer_size=200000)
+        get_file_size(filename)
+        
+        
         # Get type file
         file_type = filename.split(".")[-1]
         file_name_upload = file_upload.filename.split(".")[0]
+
+        # file_upload.close()
     except:
         logger.error("File incorrect format!")
         abort(400, message="File incorrect format")
 
-    # Analyse Candidate
-    try:
-        analyzer = DocumentAnalyzer()
-        output_analysis = analyzer.analyse_candidate(file_name=file_upload.filename)
-    except:
-        logger.error("Can not analyse Candidate!")
-        abort(400, message="Can not analyse Candidate!")
-
-    # Add to database
-    try:
-        candidate_name = (
-            output_analysis["name"]
-            if output_analysis["name"] != ""
-            else file_name_upload
-        )
-        current_datetime = datetime.now(timezone("Asia/Ho_Chi_Minh")).strftime(
-            "%Y-%m-%d %H:%M:%S"
-        )
-        file_upload_new = CandidateModel(
-            candidate_name=candidate_name,
-            candidate_phone=output_analysis["phone"],
-            candidate_email=output_analysis["email"],
-            candidate_summary=output_analysis["summary"],
-            recommended_jobs=output_analysis["recommended_jobs"],
-            cv_name=file_upload.filename,
-            cv_name_analyse=filename,
-            cv_hash=filehash,
-            cv_type=file_type,
-            cv_size=filesize,
-            cv_date=current_datetime,
-        )
-        db.session.add(file_upload_new)
-        db.session.commit()
-    except:
-
-        logger.error("Upload document to Database failed!")
-        abort(400, message="Upload document to Database failed!")
+    # # Analyse Candidate
+    # try:
+    #     analyzer = DocumentAnalyzer()
+    #     output_analysis = analyzer.analyse_candidate(file_name=file_upload.filename)
+    # except:
+    #     analyzer = DocumentAnalyzer()
+    #     output_analysis = analyzer.analyse_candidate(file_name=file_upload.filename)
+    #     logger.error("Can not analyse Candidate!")
+    #     abort(400, message="Can not analyse Candidate!")
+    #
+    # # Add to database
+    # try:
+    #     candidate_name = (
+    #         output_analysis["name"]
+    #         if output_analysis["name"] != ""
+    #         else file_name_upload
+    #     )
+    #     current_datetime = datetime.now(timezone("Asia/Ho_Chi_Minh")).strftime(
+    #         "%Y-%m-%d %H:%M:%S"
+    #     )
+    #     file_upload_new = CandidateModel(
+    #         candidate_name=candidate_name,
+    #         candidate_phone=output_analysis["phone"],
+    #         candidate_email=output_analysis["email"],
+    #         candidate_summary=output_analysis["summary"],
+    #         recommended_jobs=output_analysis["recommended_jobs"],
+    #         cv_name=file_upload.filename,
+    #         cv_name_analyse=filename,
+    #         cv_hash=filehash,
+    #         cv_type=file_type,
+    #         cv_size=filesize,
+    #         cv_date=current_datetime,
+    #     )
+    #     db.session.add(file_upload_new)
+    #     db.session.commit()
+    # except:
+    # 
+    #     logger.error("Upload document to Database failed!")
+    #     abort(400, message="Upload document to Database failed!")
 
     return None
 
@@ -180,6 +190,15 @@ def upload_file_cv():
         abort(400, message="Upload document to Database failed!")
 
     for file in uploaded_files:
+        # Save the file to disk
+
+        #move file to archive
+        # get_file_size(file.filename)
+        # try:
+        #     logger.info(os.path.getsize(os.path.join(config.CV_UPLOAD_DIR, f"{file.filename}")))
+        # except:
+        #     logger.error('can not find uploaded file')
+
         process_upload_file(single_file=file)
 
     logger.info(f"Time upload file: {time.time()-start_time:.2f}")

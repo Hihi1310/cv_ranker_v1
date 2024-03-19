@@ -2,11 +2,12 @@ from app.schemas.job_schema import *
 from app.services import job_service
 from flask.views import MethodView
 from flask_smorest import Blueprint
+from flask_login import login_required
 
 blp = Blueprint("Job", __name__, description="Job API")
 
-
 @blp.route("/job-page")
+@login_required
 class JobPageList(MethodView):
     @blp.arguments(JobFilterPageSchema)
     @blp.response(200, JobPageSchema)
@@ -16,6 +17,7 @@ class JobPageList(MethodView):
 
 
 @blp.route("/job")
+@login_required
 class JobList(MethodView):
     @blp.response(200, PlainJobSchema(many=True))
     def get(self):
@@ -29,6 +31,7 @@ class JobList(MethodView):
 
 
 @blp.route("/job/<int:job_id>")
+@login_required
 class JobQnA(MethodView):
     @blp.response(200, PlainJobSchema)
     def get(self, job_id):
@@ -46,6 +49,7 @@ class JobQnA(MethodView):
 
 
 @blp.route("/job-detail/<int:job_id>")
+@login_required
 class Candidate(MethodView):
     @blp.response(200, JobDetailSchema)
     def get(self, job_id):

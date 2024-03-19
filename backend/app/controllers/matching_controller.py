@@ -2,12 +2,14 @@ from app.schemas.matching_schema import *
 from app.services import matching_service
 from flask.views import MethodView
 from flask_smorest import Blueprint
+from flask_login import login_required
 from flask import request
 
 blp = Blueprint("Matching", __name__, description="Matching API")
 
 
 @blp.route("/process-matching")
+@login_required
 class Matching(MethodView):
     @blp.arguments(MatchingSchema)
     def post(self, matching_data):
@@ -16,6 +18,7 @@ class Matching(MethodView):
 
 
 @blp.route("/data-matching")
+@login_required
 class MatchingFilter(MethodView):
     @blp.arguments(MatchingFilterPageSchema)
     @blp.response(200, MatchingPageSchema)
@@ -25,6 +28,7 @@ class MatchingFilter(MethodView):
 
 
 @blp.route("/candidate/<candidate_id>/job/<job_id>")
+@login_required
 class GetMatchingData(MethodView):
     @blp.response(200, MatchingDetailSchema)
     def get(self, candidate_id, job_id):

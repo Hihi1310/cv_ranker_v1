@@ -12,3 +12,10 @@ class JobModel(db.Model):
     candidates = db.relationship(
         "CandidateModel", back_populates="jobs", secondary="matching"
     )
+
+    users = db.relationship(
+        "UserModel", back_populates="jobs", secondary="job_user"
+    )
+
+    def __repr__(self):
+        return f'<job_name:"{self.job_name}"\njob_description:"{self.job_description}"\ncreated_at:"{self.created_at}">'

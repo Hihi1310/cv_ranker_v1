@@ -12,9 +12,11 @@ from flask_smorest import abort
 from pytz import timezone
 from sqlalchemy import asc, desc
 
+from app.extention import loginManager
+from app.models.user_model import UserModel
+
 # Create logger for this module
 logger = logging.getLogger(__name__)
-
 
 def filter_page(results, page_size, page):
     # Filter page
