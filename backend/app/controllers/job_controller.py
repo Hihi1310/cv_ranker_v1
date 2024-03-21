@@ -3,11 +3,12 @@ from app.services import job_service
 from flask.views import MethodView
 from flask_smorest import Blueprint
 from flask_login import login_required
+from flask import jsonify
 
 blp = Blueprint("Job", __name__, description="Job API")
 
-@blp.route("/job-page")
 @login_required
+@blp.route("/job-page")
 class JobPageList(MethodView):
     @blp.arguments(JobFilterPageSchema)
     @blp.response(200, JobPageSchema)
@@ -15,9 +16,8 @@ class JobPageList(MethodView):
         result = job_service.get_job_page(job_data)
         return result
 
-
-@blp.route("/job")
 @login_required
+@blp.route("/job")
 class JobList(MethodView):
     @blp.response(200, PlainJobSchema(many=True))
     def get(self):
@@ -29,9 +29,8 @@ class JobList(MethodView):
         result = job_service.post_job(job_data)
         return result
 
-
-@blp.route("/job/<int:job_id>")
 @login_required
+@blp.route("/job/<int:job_id>")
 class JobQnA(MethodView):
     @blp.response(200, PlainJobSchema)
     def get(self, job_id):
@@ -47,9 +46,8 @@ class JobQnA(MethodView):
         result = job_service.delete_job(job_id)
         return result
 
-
-@blp.route("/job-detail/<int:job_id>")
 @login_required
+@blp.route("/job-detail/<int:job_id>", methods=["GET"])
 class Candidate(MethodView):
     @blp.response(200, JobDetailSchema)
     def get(self, job_id):

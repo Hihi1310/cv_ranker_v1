@@ -8,16 +8,16 @@ import config
 blp = Blueprint("Candidate", __name__, description="Candidate API")
 
 
-@blp.route("/upload-cv")
 @login_required
+@blp.route("/upload-cv")
 class UploadCV(MethodView):
     def post(self):
         result = candidate_service.upload_file_cv()
         return result
+    
 
-
-@blp.route("/list-candidate")
 @login_required
+@blp.route("/list-candidate")
 class ListCandidate(MethodView):
     @blp.arguments(CandidateFilterSchema)
     @blp.response(200, CandidateSchema)
@@ -26,8 +26,8 @@ class ListCandidate(MethodView):
         return result
 
 
-@blp.route("/candidate/<int:candidate_id>")
 @login_required
+@blp.route("/candidate/<int:candidate_id>")
 class Candidate(MethodView):
     @blp.response(200, CandidateDetailSchema)
     def get(self, candidate_id):

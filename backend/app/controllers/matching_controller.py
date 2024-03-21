@@ -8,17 +8,17 @@ from flask import request
 blp = Blueprint("Matching", __name__, description="Matching API")
 
 
-@blp.route("/process-matching")
 @login_required
+@blp.route("/process-matching")
 class Matching(MethodView):
     @blp.arguments(MatchingSchema)
     def post(self, matching_data):
         result = matching_service.process_matching(matching_data)
         return result
+    
 
-
-@blp.route("/data-matching")
 @login_required
+@blp.route("/data-matching")
 class MatchingFilter(MethodView):
     @blp.arguments(MatchingFilterPageSchema)
     @blp.response(200, MatchingPageSchema)
@@ -27,8 +27,8 @@ class MatchingFilter(MethodView):
         return result
 
 
-@blp.route("/candidate/<candidate_id>/job/<job_id>")
 @login_required
+@blp.route("/candidate/<candidate_id>/job/<job_id>")
 class GetMatchingData(MethodView):
     @blp.response(200, MatchingDetailSchema)
     def get(self, candidate_id, job_id):
